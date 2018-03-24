@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Location Listing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+<table class="table table-bordered table-striped">
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+      <th>Datetime</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Elevation</th>
+    </tr>
+    {% for thread in threads.items %}
+        <tr>
+            <td>{{ thread.id }}</td>
+            <td>{{ thread.description }}</td>
+            <td>{{ thread.datetime }}</td>
+            <td>{{ thread.longitude }}</td>
+            <td>{{ thread.datetime }}</td>
+            <td>{{ thread.longitude }}</td>
+        </tr>
+    {% endfor %}
+
+</table>
+{% for page in threads.iter_pages(left_edge=3, right_edge=3, left_current=3, right_current=3) %}
+
+{% if page %}
+<a href="{{ url_for('thread', page_num=page) }}">{{ page }}</a>
+{% else %}
+...
+{% endif %}
+
+{% endfor %}
+</div><br /><br />
+
+</body>
+</html>
+
